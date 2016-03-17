@@ -1,13 +1,17 @@
 import sqlalchemy as sa
 from sqlalchemy import orm
 from sqlalchemy.orm import exc as sa_exc
+from oslo_utils import uuidutils
+from neutron.db import common_db_mixin
 from neutron.db import model_base
 from neutron.api.v2 import attributes as attr
-from neutron.db import common_db_mixin
 
 from fuel_neutron.extensions import fuel as ext_fuel
 
-class Nic(model_base.BASEV2, model_base.HasId):
+
+class Nic(model_base.BASEV2, model_base.HasId, model_base.HasTenant):
+    __tablename__ = 'fuel_nics'
+
     name = sa.Column(sa.String(attr.NAME_MAX_LEN))
 
 
@@ -28,7 +32,7 @@ class FuelDbMixin(common_db_mixin.CommonDbMixin):
         return self._fields(res, fields)
 
     def create_nic(self, context, nic):
-        n = nic[nic]
+        n = nic['nic']
         with context.session.begin(subtransactions=True):
             nic_db = Nic(id=uuidutils.generate_uuid(),
                            name=n['name'])
