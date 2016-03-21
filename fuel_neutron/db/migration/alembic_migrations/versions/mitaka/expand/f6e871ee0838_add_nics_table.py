@@ -24,5 +24,28 @@ def upgrade():
         sa.Column('id', sa.String(length=36), nullable=False),
         sa.Column('name', sa.String(length=attr.NAME_MAX_LEN),
                   nullable=True),
+
+        sa.Column('mac', sa.String(32)),
+        sa.Column('if_type', sa.String(64)),
+        sa.Column('interface_properties', sa.Text),
+        sa.Column('current_speed', sa.Integer),
+        sa.Column('max_speed', sa.Integer),
+        sa.Column('driver', sa.Text),
+        sa.Column('bus_info', sa.Text),
+        sa.Column('pxe', sa.Boolean),
+        sa.Column('offloading_modes', sa.Text),
+        sa.Column('provider', sa.String(25)),
         sa.PrimaryKeyConstraint('id')
+    )
+
+    op.create_table(
+        'fuel_nics_slaves',
+        sa.Column('parent', sa.String(36)),
+        sa.Column('slave', sa.String(36)),
+        sa.ForeignKeyConstraint(
+            ['parent'], ['fuel_nics.id'], ondelete='CASCADE'
+        ),
+        sa.ForeignKeyConstraint(
+            ['slave'], ['fuel_nics.id'], ondelete='CASCADE'
+        )
     )

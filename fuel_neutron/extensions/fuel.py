@@ -19,15 +19,6 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_visible': True,
             'primary_key': True
         },
-        'name': {
-            'allow_post': True,
-            'allow_put': True,
-            'is_visible': True,
-            'default': '',
-            'validate': {
-                'type:name_not_default': attr.NAME_MAX_LEN
-            }
-        },
         'tenant_id': {
             'allow_post': True,
             'allow_put': False,
@@ -35,6 +26,105 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {'type:string': attr.TENANT_ID_MAX_LEN},
             'is_visible': True
         },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': attr.NAME_MAX_LEN
+            }
+        },
+        'mac': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:macaddress': None
+            }
+        },
+        'if_type': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': None
+            }
+        },
+        'interface_properties': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': None
+            }
+        },
+        'current_speed': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:non_negative': None
+            }
+        },
+        'max_speed': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:non_negative': None
+            }
+        },
+        'driver': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': None
+            }
+        },
+        'bus_info': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': None
+            }
+        },
+        'pxe': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:boolean': None
+            }
+        },
+        'offloading_modes': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': None
+            }
+        },
+        'driver': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'validate': {
+                'type:string': None
+            }
+        }
     }
 }
 
